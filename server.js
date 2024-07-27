@@ -5,7 +5,7 @@ import { db } from "./db/db.js";
 dotenv.config();
 
 import userRoutes from "./routes/userRoutes.js";
-import { errorhandler } from "./utils/errorHandler.js";
+import { errorhandler, handleNotFound } from "./utils/errorHandler.js";
 
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -21,6 +21,8 @@ db();
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
+
+app.use("/*", handleNotFound);
 
 app.use(errorhandler);
 
