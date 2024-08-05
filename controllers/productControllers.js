@@ -1,3 +1,6 @@
+import Product from "../models/productModal.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
+
 export const createProduct = asyncHandler(async (req, res) => {
   const { name } = req.body;
 
