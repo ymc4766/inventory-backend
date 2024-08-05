@@ -3,9 +3,10 @@ import dotenv from "dotenv";
 import { db } from "./db/db.js";
 
 dotenv.config();
+import { errorhandler, handleNotFound } from "./utils/errorHandler.js";
 
 import userRoutes from "./routes/userRoutes.js";
-import { errorhandler, handleNotFound } from "./utils/errorHandler.js";
+import productRoutes from "./routes/productRoutes.js";
 
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -21,6 +22,7 @@ db();
 app.use(express.json());
 
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 app.use("/*", handleNotFound);
 
