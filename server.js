@@ -33,12 +33,3 @@ app.get("/", (req, res) => {
 // console.log(4 * 4, "", 9 + 9);
 
 app.listen(5000, console.log(`app is running on port ${5000}`));
-
-//Handle Unhandled Promise rejections
-process.on("unhandledRejection", (err) => {
-  console.log(`ERROR: ${err}`);
-  console.log("Shutting down server due to Unhandled Promise Rejection");
-  server.close(() => {
-    process.exit(1);
-  });
-});

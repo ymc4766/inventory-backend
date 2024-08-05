@@ -30,6 +30,7 @@ const userSchema = mongoose.Schema(
         ],
         message: "Please select the Dept",
       },
+      default: "Company",
     },
 
     procurement: {
