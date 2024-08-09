@@ -1,12 +1,14 @@
 import express from "express";
 import dotenv from "dotenv";
 import { db } from "./db/db.js";
-
+import cookieParser from "cookie-parser";
+import cors from "cors";
 dotenv.config();
 import { errorhandler, handleNotFound } from "./utils/errorHandler.js";
 
 import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 // Handle Uncaught exceptions
 process.on("uncaughtException", (err) => {
@@ -20,9 +22,12 @@ const app = express();
 db();
 
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
 
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 
 app.use("/*", handleNotFound);
 
