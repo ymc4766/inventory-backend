@@ -19,12 +19,14 @@ const userSchema = mongoose.Schema(
     },
     dept: {
       type: String,
-      required: true,
+      required: [true, "add the dept"],
       enum: {
-        values: ["Warehouse", "Maintenance", "Production", "Silo"],
+        values: ["Company", "Warehouse", "Maintenance", "Production", "Silo"],
         message: "please add User Dept",
       },
+      default: "Company",
     },
+
     isAdmin: {
       type: Boolean,
       required: true,
