@@ -57,3 +57,32 @@ export const signIn = asyncHandler(async (req, res) => {
     throw new Error("invalid Email And Password !!");
   }
 });
+
+export const listUsers = asyncHandler(async (req, res) => {
+  const users = await User.find({});
+
+  res.json({ msg: "All users", count: users.length, users });
+});
+
+export const editUserClr = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+
+  if (user) {
+    user.name = req.body.name || user.name;
+    user.dept = req.body.dept || user.dept;
+
+    user.isAdmin = req.body.isAdmin || user.isAdmin;
+
+    const updatedUser = await user.save();
+
+    res.json({
+      _id: updatedUser._id,
+      name: updatedUser.name,
+      dept: user.dept,
+      isAdmin: user.isAdmin,
+    });
+  } else {
+    res.status(403);
+    throw new Error("User not Found");
+  }
+});

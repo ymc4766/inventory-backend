@@ -21,7 +21,14 @@ const userSchema = mongoose.Schema(
       type: String,
       required: [true, "add the dept"],
       enum: {
-        values: ["Company", "Warehouse", "Maintenance", "Production", "Silo"],
+        values: [
+          "Company",
+          "Warehouse",
+          "Maintenance",
+          "Production",
+          "Silo",
+          "Procurement",
+        ],
         message: "please add User Dept",
       },
       default: "Company",
