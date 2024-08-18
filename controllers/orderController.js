@@ -1,7 +1,6 @@
 import Order from "../models/orderModal.js";
 import Product from "../models/productModal.js";
-
-import { asyncHandler } from "../utils/asynchandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const newOrder = asyncHandler(async (req, res) => {
   const { orderItems, approvedData, requisitionSteps, supplier } = req.body;

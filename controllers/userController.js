@@ -1,5 +1,5 @@
 import User from "../models/userModal.js";
-import { asyncHandler } from "../utils/asynchandler.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 import generateToken from "../utils/generateToken.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
