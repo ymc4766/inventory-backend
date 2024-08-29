@@ -14,8 +14,17 @@ import userRoutes from "./routes/userRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import uomRoutes from "./routes/uomRoutes.js";
 
 import { errorHandler, routeNotFound } from "./utils/errorHandler.js";
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Cache-Control",
+    "no-store, no-cache, must-revalidate, private"
+  );
+  next();
+});
 
 // console.log(process.env.MONGO_URI);
 db();
@@ -37,6 +46,7 @@ app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/category", categoryRoutes);
+app.use("/api/uom", uomRoutes);
 
 app.use("/*", routeNotFound);
 app.use(errorHandler);

@@ -23,6 +23,7 @@ const productSchema = mongoose.Schema(
     modalNo: {
       type: String,
     },
+
     location: {
       type: String,
       trim: true,
@@ -31,6 +32,10 @@ const productSchema = mongoose.Schema(
       type: String,
       trim: true,
       default: "N/A",
+    },
+    price: {
+      type: Number,
+      default: 0.0,
     },
     stock: {
       type: Number,

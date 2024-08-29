@@ -23,3 +23,12 @@ export const protect = asyncHandler(async (req, res, next) => {
     throw new Error("No token , Login Please");
   }
 });
+
+export const isAdmin = asyncHandler(async (req, res, next) => {
+  if (req.user && req.user.isAdmin) {
+    next();
+  } else {
+    res.status(401);
+    throw new Error("U have No Clearance To Do this Functionality");
+  }
+});

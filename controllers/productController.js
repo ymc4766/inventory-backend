@@ -31,3 +31,21 @@ export const getProduct = asyncHandler(async (req, res) => {
     res.status(401).json({ message: "product Not Foound !" });
   }
 });
+
+export const updateProduct = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  const product = await Product.findById(id);
+
+  if (!product) {
+    res.status(403);
+    throw new Error("Product Not Found");
+  }
+
+  const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(201).json(updateProduct);
+});
